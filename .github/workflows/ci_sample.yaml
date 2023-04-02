@@ -1,0 +1,19 @@
+name: Node Application CI
+on: push
+
+jobs:
+  unit-test-with-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.12.x
+      - name: install dependencies
+        run: npm ci
+      - name: do unit test
+        run: npm test
+      - name: do lint
+        run: npm run lint
